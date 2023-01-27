@@ -32,7 +32,7 @@ namespace KeystrokeCounter.Collections
 
         public static KeyStroke Of(MouseButton button)
         {
-            return new KeyStroke(KeyStrokeType.Mouse, (ushort)button, button.ToString());
+            return new KeyStroke(KeyStrokeType.Mouse, (ushort)button, "Mouse " + button.ToString());
         }
 
         public static KeyStroke Of(Key key)
