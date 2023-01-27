@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<RootNamespace>KeystrokeCounter</RootNamespace>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<Company>$(Authors)</Company>
+		<Authors>Daniel M.</Authors>
+		<Title>Keystroke Counter</Title>
+		<Copyright>© Daniel M.</Copyright>
+		<NeutralLanguage>en-150</NeutralLanguage>
+		<FileVersion>1.0.0.0</FileVersion>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<Product>Keystroke Counter</Product>
+		<Description>Counts the keystrokes pressed while the application is open.</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Page Include="App.xaml" />
+	</ItemGroup>
+
+</Project>
