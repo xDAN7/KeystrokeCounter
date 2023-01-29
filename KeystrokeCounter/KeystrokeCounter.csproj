@@ -19,8 +19,9 @@
 		<Title>Keystroke Counter</Title>
 		<Copyright>© Daniel M.</Copyright>
 		<NeutralLanguage>en-150</NeutralLanguage>
-		<FileVersion>1.0.0.0</FileVersion>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.1.0</FileVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<Version>1.0.1</Version>
 		<Product>Keystroke Counter</Product>
 		<Description>Counts the keystrokes pressed while the application is open.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
