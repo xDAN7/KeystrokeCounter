@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Input;
 
 namespace KeystrokeCounter.Intercepts
-{
+{   
     public class InterceptMouse
     {
 
@@ -38,8 +38,6 @@ namespace KeystrokeCounter.Intercepts
             }
         }
 
-        private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
-
         private IntPtr HookCallback(
             int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -67,6 +65,8 @@ namespace KeystrokeCounter.Intercepts
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
+
+        #region DLL Imports
 
         private const int WH_MOUSE_LL = 14;
 
@@ -120,6 +120,11 @@ namespace KeystrokeCounter.Intercepts
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        private delegate IntPtr LowLevelMouseProc(
+            int nCode, IntPtr wParam, IntPtr lParam);
+
+        #endregion
 
     }
 }

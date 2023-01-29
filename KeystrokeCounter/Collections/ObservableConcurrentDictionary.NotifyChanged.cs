@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KeystrokeCounter.Collections
 {
@@ -32,6 +28,7 @@ namespace KeystrokeCounter.Collections
         {
             OnPropertyChanged();
             if (CollectionChanged != null) CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            _strokes.Clear();
         }
 
 

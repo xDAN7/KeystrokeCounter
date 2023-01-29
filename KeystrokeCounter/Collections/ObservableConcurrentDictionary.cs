@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace KeystrokeCounter.Collections
@@ -57,7 +56,6 @@ namespace KeystrokeCounter.Collections
         public void Clear()
         {
             _data.Clear();
-            _strokes.Clear();
             OnCollectionChanged();
         }
 
@@ -93,7 +91,8 @@ namespace KeystrokeCounter.Collections
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            if (_data.TryRemove(item))
+            _data.TryGetValue(item.Key, out var value);
+            if (value.Equals(item.Value) && _data.TryRemove(item.Key, out var _))
             {
                 OnCollectionChanged(NotifyCollectionChangedAction.Remove, item);
                 return true;
@@ -101,7 +100,7 @@ namespace KeystrokeCounter.Collections
             return false;
         }
 
-        public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
+        public bool TryGetValue(TKey key, out TValue value)
         {
             return _data.TryGetValue(key, out value);
         }

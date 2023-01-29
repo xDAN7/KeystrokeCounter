@@ -1,13 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+
+		<!-- Configuration -->
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net48</TargetFramework>
 		<RootNamespace>KeystrokeCounter</RootNamespace>
-		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
-		<Company>$(Authors)</Company>
+
+		<!-- Deployment -->
+		<RuntimeIdentifier>win</RuntimeIdentifier>
+		<PublishSingleFile>true</PublishSingleFile>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		
+		<!-- Publishing Information -->
 		<Authors>Daniel M.</Authors>
+		<Company>$(Authors)</Company>
 		<Title>Keystroke Counter</Title>
 		<Copyright>© Daniel M.</Copyright>
 		<NeutralLanguage>en-150</NeutralLanguage>
@@ -15,7 +23,14 @@
 		<AssemblyVersion>1.0.0</AssemblyVersion>
 		<Product>Keystroke Counter</Product>
 		<Description>Counts the keystrokes pressed while the application is open.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<ApplicationIcon>Icon.ico</ApplicationIcon>
+		
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="Icon.ico" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Page Include="App.xaml" />

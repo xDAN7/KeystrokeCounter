@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 
@@ -7,9 +9,6 @@ namespace KeystrokeCounter.Intercepts
 {
     public class InterceptKeys
     {
-
-        private const int WH_KEYBOARD_LL = 13;
-        private const int WM_KEYDOWN = 0x0100;
 
         public InterceptKeys(KeyCounter callback)
         {
@@ -20,6 +19,7 @@ namespace KeystrokeCounter.Intercepts
         private KeyCounter _callback;
         private LowLevelKeyboardProc _proc;
         private IntPtr _hookID = IntPtr.Zero;
+        private HashSet<Key> _pressedKeys = new HashSet<Key>();
 
         public void Enable()
         {
@@ -41,18 +41,34 @@ namespace KeystrokeCounter.Intercepts
             }
         }
 
-        private delegate IntPtr LowLevelKeyboardProc(
-            int nCode, IntPtr wParam, IntPtr lParam);
-
         private IntPtr HookCallback(
             int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            if (nCode >= 0)
             {
-                int vkCode = Marshal.ReadInt32(lParam);
-                _callback.Record(KeyInterop.KeyFromVirtualKey(vkCode));
+                var key = KeyInterop.KeyFromVirtualKey(Marshal.ReadInt32(lParam));
+                switch ((KeysMessages)wParam)
+                {
+                    case KeysMessages.WM_KEYDOWN:
+                        if (_pressedKeys.Add(key))
+                            _callback.Record(key);
+                        break;
+                    case KeysMessages.WM_KEYUP:
+                        _pressedKeys.Remove(key);
+                        break;
+                }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
+        }
+
+        #region DLL Imports
+
+        private const int WH_KEYBOARD_LL = 13;
+
+        private enum KeysMessages
+        {
+            WM_KEYDOWN = 0x0100,
+            WM_KEYUP = 0x0101
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -69,6 +85,11 @@ namespace KeystrokeCounter.Intercepts
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        private delegate IntPtr LowLevelKeyboardProc(
+            int nCode, IntPtr wParam, IntPtr lParam);
+
+        #endregion
 
     }
 }
