@@ -1,4 +1,4 @@
-<a href="https://github.com/MatDaniel/KeystrokeCounter"><img src="https://user-images.githubusercontent.com/29778928/215340744-48243589-0a64-469f-b498-9d8223f4250c.png" width="800px" alt="KeystrokeCounter Logo" /></a>
+<a href="https://github.com/MatDaniel/KeystrokeCounter"><img src="https://raw.githubusercontent.com/xDAN7/KeystrokeCounter/5db8c76c8b2279c521b5c6d87d7dee4df492d8fa/Logo.png" width="800px" alt="KeystrokeCounter Logo" /></a>
 --
 This application displays a count of mouse and keyboard keys pressed while it was open. Was programmed based on a request.
 
@@ -6,8 +6,8 @@ This application displays a count of mouse and keyboard keys pressed while it wa
 
 Counts all keys together and separately. Show them clearly in a list. You can clear the list with the reset button.
 
-![grafik](https://user-images.githubusercontent.com/29778928/232234497-ec0d2c8d-f3d6-4714-91ca-6402f872a1a8.png)
+![grafik](https://raw.githubusercontent.com/xDAN7/KeystrokeCounter/0c75cb3f210f9a3ddf305243b0c6ee8368376ee0/preview-1.png)
 
 Counts keys for all applications together and separately. Which application is displayed can easily be selected via a drop-down menu.
 
-![grafik](https://user-images.githubusercontent.com/29778928/232234633-b9bc22ae-7eb7-4c53-8923-ea66ec3d9602.png)
+![grafik](https://raw.githubusercontent.com/xDAN7/KeystrokeCounter/0c75cb3f210f9a3ddf305243b0c6ee8368376ee0/preview-2.png)
